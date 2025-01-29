@@ -1,10 +1,11 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRoleToUsersTable extends Migration
+class CreateStatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +14,12 @@ class AddRoleToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['Administrador', 'Profesor'])->default('Administrador');
+        Schema::create('states', function (Blueprint $table) {
+            $table->id();
+            $table->string('name')->unique();
+            $table->string('iso')->unique();
+            $table->timestamps();
+            $table->foreignIdFor(User::class);
         });
     }
 
@@ -25,8 +30,6 @@ class AddRoleToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
-        });
+        Schema::dropIfExists('states');
     }
 }

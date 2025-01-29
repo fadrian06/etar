@@ -1,3 +1,17 @@
+@php
+$links = [
+    ['name' => 'Inicio', 'route' => 'dashboard'],
+    ['name' => 'Profesores', 'route' => 'teachers.index'],
+    ['name' => 'Estudiantes', 'route' => 'students.index'],
+    ['name' => 'Años', 'route' => 'years.index'],
+    ['name' => 'Períodos', 'route' => 'periods.index'],
+    ['name' => 'Notas', 'route' => 'notes.index'],
+    ['name' => 'Materias', 'route' => 'subjects.index'],
+    ['name' => 'Reportes', 'route' => 'reports.index'],
+    ['name' => 'Respaldo', 'route' => 'backup.index'],
+];
+@endphp
+
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,9 +26,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Inicio') }}
-                    </x-nav-link>
+                    @foreach ($links as $link)
+                        <x-nav-link :href="route($link['route'])" :active="request()->routeIs($link['route'])">
+                            {{ __($link['name']) }}
+                        </x-nav-link>
+                    @endforeach
                 </div>
             </div>
 
@@ -63,9 +79,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Inicio') }}
-            </x-responsive-nav-link>
+            @foreach ($links as $link)
+                <x-responsive-nav-link :href="route($link['route'])" :active="request()->routeIs($link['route'])">
+                    {{ __($link['name']) }}
+                </x-responsive-nav-link>
+            @endforeach
         </div>
 
         <!-- Responsive Settings Options -->

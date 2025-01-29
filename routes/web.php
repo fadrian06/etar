@@ -1,5 +1,13 @@
 <?php
 
+use App\Http\Controllers\BackupController;
+use App\Http\Controllers\NoteController;
+use App\Http\Controllers\PeriodController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\YearController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +29,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+Route::middleware('auth')->group(static function (): void {
+    Route::resources([
+        'teachers' => TeacherController::class,
+        'students' => StudentController::class,
+        'years' => YearController::class,
+        'periods' => PeriodController::class,
+        'notes' => NoteController::class,
+        'subjects' => SubjectController::class,
+        'backup' => BackupController::class,
+        'reports' => ReportController::class
+    ]);
+});
+
+require __DIR__ . '/auth.php';
