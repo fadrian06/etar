@@ -18,7 +18,7 @@
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description"
       content="Vali is a responsive and free dashboard theme/template built with Bootstrap 5, SASS and PUG.js.">
-    <title>ETAR - Arístides Torres Vielma</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
   </head>
   <body class="landing-page">
