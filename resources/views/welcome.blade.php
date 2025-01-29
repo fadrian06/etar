@@ -18,7 +18,7 @@
     <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
     <meta property="og:description"
       content="Vali is a responsive and free dashboard theme/template built with Bootstrap 5, SASS and PUG.js.">
-    <title>Vali Admin - Free Bootstrap 5 Dashboard Template</title>
+    <title>ETAR - Arístides Torres Vielma</title>
     <link rel="stylesheet" href="{{ asset('css/main.min.css') }}">
   </head>
   <body class="landing-page">
@@ -84,27 +84,28 @@
     <section class="landing-hero">
       <div class="landing-hero-overlay"></div>
       <div class="landing-hero-content">
-        <h1 class="landing-hero-title">Vali Admin - A Free Bootstrap 5 Dashboard Template</h1>
-        <p class="landing-hero-description">Built with PugJS, SASS, and Bootstrap 5</p>
+        <h1 class="landing-hero-title">ETAR - Arístides Torres Vielma</h1>
+        <p class="landing-hero-description">Sistema Automatizado para el Registro y Control de Notas</p>
         <div>
           @if (Route::has('login'))
           <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             @auth
-            <a class="btn btn-primary me-4" href="{{ url('/dashboard') }}">Dashboard</a>
+            <a class="btn btn-primary me-4" href="{{ url('/dashboard') }}">Ir al sistema</a>
             @else
-            <a class="btn btn-primary me-4" href="{{ url('login') }}">Log in</a>
+            <a class="btn btn-primary me-4" href="{{ url('login') }}">Iniciar sesión</a>
 
             @if (Route::has('register'))
-            <a class="btn btn-primary me-4" href="{{ url('register') }}">Register</a>
+            <a class="btn btn-primary me-4" href="{{ url('register') }}">Registrarse</a>
             @endif
             @endauth
           </div>
           @endif
         </div>
-        <img class="landing-hero-banner" src="{{asset('images/banner.jpg')}}">
+        <img class="landing-hero-banner" src="{{asset('images/etar.webp')}}">
+        <img class="landing-hero-banner" src="{{asset('images/panoramicaetar.webp')}}">
       </div>
     </section>
-    <section class="features">
+    {{-- <section class="features">
       <h1 class="features-title">Features</h1>
       <div class="features-cards">
         <div class="features-card">
@@ -160,6 +161,6 @@
     </section>
     <footer class="landing-footer">Created by <b>Pratik Borsadiya</b> & <a
         href="https://github.com/pratikborsadiya/vali-admin/graphs/contributors" target="_blank"
-        rel="noopener">contributors</a></footer>
+        rel="noopener">contributors</a></footer> --}}
   </body>
 </html>
