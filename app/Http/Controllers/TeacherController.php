@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Teacher;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
+use Illuminate\Support\Facades\Gate;
 
 class TeacherController extends Controller
 {
@@ -15,7 +16,9 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        return view('teachers.index', [
+            'teachers' => Teacher::all()
+        ]);
     }
 
     /**
@@ -25,7 +28,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return view('teachers.create');
     }
 
     /**
@@ -36,7 +39,9 @@ class TeacherController extends Controller
      */
     public function store(StoreTeacherRequest $request)
     {
-        //
+        (new Teacher($request->validated()))->save();
+
+        return redirect()->route('teachers.index');
     }
 
     /**
@@ -47,7 +52,9 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        //
+        return view('teachers.show', [
+            'teacher' => $teacher
+        ]);
     }
 
     /**
@@ -58,7 +65,6 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
     }
 
     /**
@@ -81,6 +87,9 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        Gate::authorize('delete', $teacher);
+        $teacher->delete();
+
+        return redirect()->route('teachers.index');
     }
 }

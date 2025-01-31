@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class StoreTeacherRequest extends FormRequest
 {
@@ -13,7 +15,10 @@ class StoreTeacherRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        $user = auth()->user();
+        assert($user instanceof User);
+
+        return $user->role === 'Administrador';
     }
 
     /**
@@ -24,7 +29,9 @@ class StoreTeacherRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', Password::defaults()],
         ];
     }
 }
