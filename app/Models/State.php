@@ -14,4 +14,14 @@ class State extends Model
     {
         return $this->hasMany(City::class);
     }
+
+    function getInitialAttribute(): string
+    {
+        return $this->name[0];
+    }
+
+    function __toString(): string
+    {
+        return $this->name;
+    }
 }
